@@ -1,0 +1,23 @@
+{
+  // Interpretador do ambiente virtual (.venv criado na raiz do projeto).
+  // macOS/Linux:
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  // Windows: troque a linha acima por:
+  // "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+
+  // Carrega as variáveis do .env automaticamente ao rodar/depurar.
+  "python.envFile": "${workspaceFolder}/.env",
+
+  // Ativa o venv automaticamente no terminal integrado.
+  "python.terminal.activateEnvironment": true,
+
+  // Qualidade de vida
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "[python]": {
+    "editor.formatOnSave": false
+  }
+}

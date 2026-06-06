@@ -1,0 +1,72 @@
+{
+  // Configurações de execução/depuração (tecla F5).
+  // Requer a extensão "Python" (Microsoft) instalada.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "▶ Dashboard (Streamlit)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "streamlit",
+      "args": ["run", "app.py"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "CLI: inicializar banco (--init-db)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["--init-db"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "CLI: Fase 1 (área/insumos/meteo)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["--fase", "1"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "CLI: Fase 3 (sensores --n 5)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["--fase", "3", "--n", "5"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "CLI: Fase 4 (treinar ML)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["--fase", "4", "--treinar"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "CLI: Fase 6 (YOLO)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["--fase", "6"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "CLI: Fase 7 (avaliar e alertar)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["--fase", "7"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "CLI: alerta de teste (--alerta)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["--alerta"],
+      "console": "integratedTerminal"
+    }
+  ]
+}

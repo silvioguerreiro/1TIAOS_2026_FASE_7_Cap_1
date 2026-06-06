@@ -1,0 +1,32 @@
+# Ambiente / segredos
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Banco e artefatos gerados (recriados automaticamente)
+data/farmtech.db
+data/*.db
+data/*.db-journal
+data/sensores_export.csv
+fase4_ml_dashboard/modelos/*.pkl
+fase6_visao/saidas/
+yolov8*.pt
+
+# SO / IDE
+.DS_Store
+.idea/
+.gittest_tmp/
+
+# VS Code: ignora tudo, exceto as configs úteis do projeto
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json

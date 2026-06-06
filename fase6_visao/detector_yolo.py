@@ -79,16 +79,43 @@ def _detectar_real(imagens: list[Path], peso: str, conf: float) -> list[dict]:
 # --------------------------------------------------------------------------- #
 # Modo SIMULADO
 # --------------------------------------------------------------------------- #
+# Mapeia palavra-chave no nome do arquivo -> (classe, confiança). Assim o
+# rótulo simulado bate com o que a imagem mostra (ver fase6_visao/gerar_amostras.py).
+_PALAVRAS_CLASSE = {
+    "saudavel": ("folha_saudavel", 0.93),
+    "lagarta": ("praga_lagarta", 0.82),
+    "praga": ("praga_lagarta", 0.82),
+    "ferrugem": ("ferrugem_asiatica", 0.71),
+    "deficiencia": ("deficiencia_nutricional", 0.68),
+    "irregular": ("crescimento_irregular", 0.64),
+}
+# Nomes genéricos das amostras desta demo (amostra_lavoura_1..4.jpeg).
+_MAPA_AMOSTRAS = {
+    "amostra_lavoura_1": ("folha_saudavel", 0.93),
+    "amostra_lavoura_2": ("praga_lagarta", 0.82),
+    "amostra_lavoura_3": ("ferrugem_asiatica", 0.71),
+    "amostra_lavoura_4": ("deficiencia_nutricional", 0.68),
+}
+
+
+def _classe_simulada(stem: str):
+    """Deriva (classe, confiança) a partir do nome do arquivo; None se não casar."""
+    nome = stem.lower()
+    for chave, valor in _PALAVRAS_CLASSE.items():
+        if chave in nome:
+            return valor
+    return _MAPA_AMOSTRAS.get(nome)
+
+
 def _detectar_simulado(imagens: list[Path]) -> list[dict]:
-    rng = random.Random(42)  # determinístico
+    rng = random.Random(42)  # determinístico (fallback)
     deteccoes = []
     for img in imagens:
-        classe = rng.choice(_CLASSES_SIM)
-        # garante ao menos uma praga de alta confiança para exercitar o alerta
-        if img is imagens[0]:
-            classe = "praga_lagarta"
-            confianca = 0.82
-        else:
+        achado = _classe_simulada(img.stem)
+        if achado:
+            classe, confianca = achado
+        else:  # imagem sem pista no nome: rótulo determinístico de fallback
+            classe = rng.choice(_CLASSES_SIM)
             confianca = round(rng.uniform(0.45, 0.9), 2)
         deteccoes.append({
             "imagem": img.name,

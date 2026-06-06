@@ -19,6 +19,7 @@ from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
 
 # Raiz do projeto no path (permite os imports de pacote)
 BASE_DIR = Path(__file__).resolve().parent
@@ -40,6 +41,26 @@ st.set_page_config(
     page_title="FarmTech Solutions — Sistema Integrado (Fase 7)",
     page_icon="🌱",
     layout="wide",
+)
+
+# Impede a tradução automática do navegador (Google Tradutor) de alterar o DOM
+# e quebrar a renderização do React — causa do "NotFoundError: insertBefore".
+components.html(
+    """
+    <script>
+      const doc = window.parent.document;
+      doc.documentElement.setAttribute("translate", "no");
+      doc.documentElement.classList.add("notranslate");
+      let m = doc.querySelector('meta[name="google"]');
+      if (!m) {
+        m = doc.createElement("meta");
+        m.name = "google";
+        m.content = "notranslate";
+        doc.head.appendChild(m);
+      }
+    </script>
+    """,
+    height=0,
 )
 
 

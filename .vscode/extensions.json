@@ -1,0 +1,9 @@
+{
+  // Extensões recomendadas (o VS Code oferece instalar ao abrir o projeto).
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-toolsai.jupyter",
+    "REditorSupport.r"
+  ]
+}

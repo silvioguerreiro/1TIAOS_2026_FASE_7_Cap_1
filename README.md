@@ -250,8 +250,16 @@ alerta na Fase 7 (modo simulado e/ou AWS real) → prints da AWS.
 - **Banco padrão:** SQLite (`data/farmtech.db`), portátil e offline. Oracle é
   opcional via `DB_BACKEND=oracle`.
 - **Meteo padrão:** Open-Meteo (sem chave). OpenWeatherMap é opcional.
-- **YOLO:** roda com Ultralytics se instalado (`pip install ultralytics`);
+- **YOLO / Fase 6:** roda com Ultralytics se instalado (`pip install ultralytics`);
   senão, usa modo simulado determinístico.
+  > ⚠️ **Imagens de exemplo:** os arquivos em `fase6_visao/imagens/`
+  > (`amostra_lavoura_*.jpeg`) são **ilustrações sintéticas** geradas por
+  > `fase6_visao/gerar_amostras.py` apenas para a demonstração rodar offline —
+  > **não são fotos reais** e a detecção exibida é simulada. No modo simulado o
+  > rótulo de cada imagem é derivado do nome do arquivo (`_MAPA_AMOSTRAS` em
+  > `detector_yolo.py`). Em **produção**, troque por **fotos reais** de
+  > pragas/doenças e um modelo YOLO treinado (`best.pt`): o detector passa a
+  > rodar em modo real automaticamente, sem alterar o código.
 - **Alertas:** AWS SNS quando há credenciais; senão, modo simulado.
 - Todo o sistema **roda após `pip install -r requirements.txt`**, sem
   dependências externas obrigatórias.
