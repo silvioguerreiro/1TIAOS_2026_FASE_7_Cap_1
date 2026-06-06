@@ -1,0 +1,35 @@
+# =====================================================================
+# requirements.txt — FarmTech Solutions (Fase 7) — Grupo 1TIAO
+# Instalação:  pip install -r requirements.txt
+# Python 3.10+ recomendado.
+# =====================================================================
+
+# --- Núcleo (obrigatório p/ dashboard, banco, ML e alertas) ----------
+streamlit==1.40.2
+pandas==2.2.3
+numpy==2.1.3
+scikit-learn==1.5.2
+joblib==1.4.2
+altair==5.4.1
+matplotlib==3.9.2
+requests==2.32.3
+python-dotenv==1.0.1
+openpyxl==3.1.5
+watchdog==6.0.0   # auto-reload mais rápido do Streamlit em dev
+
+# --- AWS (mensageria SNS). Sem credenciais, roda em modo simulado. ---
+boto3==1.35.49
+
+# =====================================================================
+# OPCIONAIS — descomente conforme a necessidade.
+# O código funciona SEM eles (modo simulado / fallback).
+# ---------------------------------------------------------------------
+# Visão computacional REAL com YOLO (puxa PyTorch, ~2GB):
+# ultralytics==8.3.0
+#
+# Banco Oracle (somente se DB_BACKEND=oracle no .env):
+# oracledb==2.4.1
+#
+# Leitura REAL do ESP32/Wokwi via Serial (modo real da Fase 3):
+# pyserial==3.5
+# =====================================================================
