@@ -8,6 +8,7 @@
  *   - LDR    (GPIO 34)  -> proxy de pH do solo (leitura analógica)
  *   - Botões (GPIO 18/19/21) -> presença de N, P, K (entrada digital)
  *   - Relé   (GPIO 27)  -> bomba de irrigação
+ *   - LCD I2C 16x2 (SDA 22 / SCL 23, addr 0x27) -> métricas em tempo real (Fase 4)
  *
  * Saída Serial (115200) em formato lido por fase3_iot/sensores.py:
  *   N=.. P=.. K=.. | pH=.. | Ajuste pH=.. | Umi=.. | Temp=.. | Bomba=..
@@ -16,6 +17,8 @@
  * ===================================================================== */
 
 #include "DHT.h"
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 
 // ----------------------- Pinos -----------------------
 #define PIN_DHT     15
@@ -24,9 +27,14 @@
 #define PIN_BTN_P   19
 #define PIN_BTN_K   21
 #define PIN_RELE    27
+#define PIN_SDA     22   // I2C do LCD
+#define PIN_SCL     23   // I2C do LCD
 
 #define DHTTYPE DHT22
 DHT dht(PIN_DHT, DHTTYPE);
+
+// LCD I2C 16x2 (Fase 4): exibe pH, umidade, temperatura e estado da bomba
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 // ----------------- Faixa ideal (Soja) ----------------
 const float PH_MIN  = 5.5;
@@ -36,6 +44,16 @@ const float UMI_MIN = 35.0;   // % - abaixo disso, irriga
 void setup() {
   Serial.begin(115200);
   dht.begin();
+
+  // --- LCD I2C 16x2 (Fase 4) ---
+  Wire.begin(PIN_SDA, PIN_SCL);
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("FarmTech ESP32");
+  lcd.setCursor(0, 1);
+  lcd.print("Iniciando...");
+  delay(1500);
 
   pinMode(PIN_BTN_N, INPUT_PULLUP);
   pinMode(PIN_BTN_P, INPUT_PULLUP);
@@ -99,6 +117,20 @@ void loop() {
   Serial.print("pH:");   Serial.print(ph, 2);     Serial.print('\t');
   Serial.print("Umi:");  Serial.print(umidade, 1); Serial.print('\t');
   Serial.print("Temp:"); Serial.println(temperatura, 1);
+
+  // --- Atualiza o display LCD 16x2 (Fase 4) ---
+  // Linha 0: pH, umidade e temperatura | Linha 1: bomba e nutrientes (NPK)
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("pH"); lcd.print(ph, 1);
+  lcd.print(" U"); lcd.print(umidade, 0);
+  lcd.print("% T"); lcd.print(temperatura, 0);
+  lcd.setCursor(0, 1);
+  lcd.print("Bomba:");
+  lcd.print(bombaLigada ? "ON " : "OFF");
+  lcd.print(N ? "N" : "-");
+  lcd.print(P ? "P" : "-");
+  lcd.print(K ? "K" : "-");
 
   delay(2000);
 }

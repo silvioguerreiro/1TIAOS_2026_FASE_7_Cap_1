@@ -1,0 +1,4 @@
+# Bibliotecas Arduino usadas pelo esp32_irrigacao.ino (Wokwi resolve automaticamente)
+DHT sensor library
+Adafruit Unified Sensor
+LiquidCrystal I2C

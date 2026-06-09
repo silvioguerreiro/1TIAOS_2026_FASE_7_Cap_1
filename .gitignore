@@ -25,6 +25,13 @@ yolov8*.pt
 .idea/
 .gittest_tmp/
 
+# App bundle / configs locais (não versionar)
+FarmTech.app/
+.claude/
+
+# Capturas avulsas/temporárias
+docs/prints_aws/Captura de Tela*.png
+
 # VS Code: ignora tudo, exceto as configs úteis do projeto
 .vscode/*
 !.vscode/settings.json

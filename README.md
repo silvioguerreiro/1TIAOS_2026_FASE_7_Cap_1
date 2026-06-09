@@ -1,4 +1,8 @@
-# 🌱 FarmTech Solutions — Sistema Integrado de Agronegócio (Fase 7)
+<a href="https://www.fiap.com.br/">
+  <img width="2385" height="642" alt="logo-fiap" src="https://github.com/user-attachments/assets/62285a6c-34fe-4206-8a85-7ad584c6908b" border="0" width="40%" height="40%">
+</a>
+
+<br>
 
 > Consolidação das Fases 1 a 6 em uma única pasta de projeto Python, com uma
 > **dashboard integradora** (Streamlit) e um **serviço de mensageria na AWS**
@@ -6,13 +10,19 @@
 
 ---
 
-## 1. Grupo e integrantes
+## 👨‍💻 Grupo 31
+**Curso:** 1TIAOS – Fase 7
+**Setor de aplicação:** Agronegócio (arquitetura genérica e parametrizável)
 
-- **Grupo:** 1TIAO
-- **Integrantes:**
-  - Silvio Prestes Guerreiro Junior — RM567958
-- **Curso/Fase:** FIAP — Fase 7 (Consolidação de um Sistema)
-- **Setor de aplicação:** Agronegócio (arquitetura genérica e parametrizável)
+## 👨‍🎓 Integrantes
+- [**Silvio Prestes Guerreiro Junior**](https://www.linkedin.com/in/silvio-guerreiro-junior/)
+- **RM:** 567958
+
+## 👩‍🏫 Professores
+- **Tutor(a):** [Sabrina Otoni](https://www.linkedin.com/company/inova-fusca)
+- **Coordenador(a):** [André Godoi Chiovato](https://www.linkedin.com/company/inova-fusca)
+
+
 
 ---
 
@@ -194,10 +204,11 @@ Parametrizada em `config/settings.py` (`LIMIARES`):
 
 ## 8. 🎥 Vídeo demonstrativo (YouTube — não listado)
 
-**Link:** `<<< COLE AQUI O LINK DO YOUTUBE (NÃO LISTADO) >>>`
+**Link:** https://youtu.be/4RMHjiY2RlU
 
-Roteiro sugerido (≤ 5 min): visão geral → dashboard (Fases 1–6) → disparo de
-alerta na Fase 7 (modo simulado e/ou AWS real) → prints da AWS.
+Vídeo demonstrativo (≤ 8 min): visão geral → dashboard percorrendo as Fases 1 a 6
+→ disparo de alerta na Fase 7 (Amazon SNS, modo AWS real). Demonstração feita
+inteiramente na dashboard integradora.
 
 ---
 
