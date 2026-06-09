@@ -171,17 +171,33 @@ ISO 27001/27002** estão em **[`fase5_cloud/README_cloud.md`](fase5_cloud/README
 > todos os disparos são auditados na tabela `ALERTAS_LOG` (controle A.12.3).
 
 ### Prints da solução AWS
-As capturas ficam em **`docs/prints_aws/`**. Inclua:
-1. Tópico SNS criado (com ARN) · 2. Assinatura de e-mail confirmada ·
-3. Política IAM mínima · 4. E-mail/SMS recebido com a ação corretiva.
 
-```
-docs/prints_aws/
-├── 01_topico_sns.png
-├── 02_assinatura_email.png
-├── 03_politica_iam.png
-└── 04_alerta_recebido.png
-```
+As capturas abaixo documentam a solução **real** na AWS (arquivos em `docs/prints_aws/`).
+
+**1. Tópico SNS `alertas-fazenda` criado (com ARN)**
+Canal central por onde os alertas são publicados. O ARN deste tópico é o destino
+da ação `sns:Publish` configurada no `.env` (`SNS_TOPIC_ARN`).
+
+![Tópico SNS alertas-fazenda criado com ARN](docs/prints_aws/01_topico_sns.png)
+
+**2. Assinatura de e-mail confirmada**
+O e-mail do funcionário está inscrito e com status **Confirmed** no tópico — é
+quem recebe os alertas de campo enviados pelo sistema.
+
+![Assinatura de e-mail confirmada no tópico SNS](docs/prints_aws/02_assinatura_email.png)
+
+**3. Política IAM de menor privilégio (`sns:Publish`)**
+A credencial usada pelo sistema só tem permissão de **publicar no tópico de
+alertas** — nada além disso (boa prática alinhada à ISO 27001/27002, controle de
+acesso A.9).
+
+![Política IAM de menor privilégio sns:Publish](docs/prints_aws/03_politica_iam.png)
+
+**4. Alerta recebido pelo funcionário (e-mail)**
+Prova do fluxo fim-a-fim: uma leitura crítica disparou a publicação no SNS e a
+mensagem chegou à caixa do funcionário **já com a ação corretiva** sugerida.
+
+![E-mail de alerta recebido com a ação corretiva](docs/prints_aws/04_alerta_recebido.png)
 
 ---
 
